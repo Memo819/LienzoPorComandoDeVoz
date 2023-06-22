@@ -2,6 +2,7 @@ x = 0;
 y = 0;
 draw_circle = "";
 draw_rect = "";
+draw_triangle = "";
 
 var SpeechRecognition = window.webkitSpeechRecognition;
 
@@ -20,19 +21,26 @@ recognition.onresult = function(event) {
     var content = event.results[0][0].transcript;
 
     document.getElementById("status").innerHTML = "La voz se reconocio como: " + content;
-        if(content =="Circle")
+        if(content =="círculo")
         {
             x = Math.floor(Math.random() * 900);
             y = Math.floor(Math.random() * 600);
             document.getElementById("status").innerHTML = "Se empezo a dibujar un circulo ";
             draw_circle = "set";
         }
-        if(content =="rectangle")
+        if(content =="rectángulo")
         {
             x = Math.floor(Math.random() * 900);
             y = Math.floor(Math.random() * 600);
             document.getElementById("status").innerHTML = "Se empezo a dibujar un rectangulo ";
             draw_rect = "set";
+        }
+        if(content =="triángulo")
+        {
+            x = Math.floor(Math.random() * 900);
+            y = Math.floor(Math.random() * 600);
+            document.getElementById("status").innerHTML = "Se empezo a dibujar un triangulo ";
+            draw_triangle = "set";
         }
 }
 function setup() {
@@ -53,5 +61,11 @@ function draw() {
         rect(x,y,70,50);
         document.getElementById("status").innerHTML = "Se dibujo un rectangulo. ";
         draw_rect = "";
+    }
+    if(draw_triangle == "set")
+    {
+        triangle(50, 50, 100, 100, 150, 50);
+        document.getElementById("status").innerHTML = "Se dibujo un rectangulo. ";
+        draw_triangle = "";
     }
 }
